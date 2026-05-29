@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lil Philly</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f4f4f4;
+}
+
+header{
+    background:#d62828;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.item{
+    background:white;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:10px;
+}
+
+button{
+    background:#d62828;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.cart{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.pay-btn{
+    width:100%;
+    font-size:18px;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🍔 Lil Philly</h1>
+    <p>Order Fresh Food Delivered To Your Door</p>
+</header>
+
+<div class="container">
+
+<h2>Menu</h2>
+
+<div class="item">
+    <h3>Cheesesteak - $9.99</h3>
+    <select id="cheeseType">
+        <option>American Cheese</option>
+        <option>Provolone</option>
+        <option>Cheese Whiz</option>
+    </select>
+    <button onclick="addItem('Custom Cheesesteak',9.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Burger - $2.99</h3>
+    <button onclick="addItem('Burger',2.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Chicken Nuggets - $1.99</h3>
+    <button onclick="addItem('Chicken Nuggets',1.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Philly Fries - $2.99</h3>
+    <select id="friesType">
+        <option>Regular Fries</option>
+        <option>Cheese Fries</option>
+    </select>
+    <button onclick="addItem('Philly Fries',2.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Mozzarella Sticks - $1.99</h3>
+    <button onclick="addItem('Mozzarella Sticks',1.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Philly Ice - $3.99</h3>
+    <button onclick="addItem('Philly Ice',3.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Soft Serve Ice Cream - $0.99</h3>
+    <button onclick="addItem('Soft Serve Ice Cream',0.99)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Beverage - $1.50</h3>
+    <button onclick="addItem('Beverage',1.50)">Add</button>
+</div>
+
+<div class="item">
+    <h3>Lil Philly Combo - $12.99</h3>
+    <p>Cheesesteak OR Chicken Nuggets + Philly Fries + Beverage + Philly Ice</p>
+    <button onclick="addItem('Lil Philly Combo',12.99)">Add</button>
+</div>
+
+<div class="cart">
+
+<h2>Your Order</h2>
+
+<input type="text" id="customerName" placeholder="Your Name">
+
+<input type="text" id="customerAddress" placeholder="Delivery Address">
+
+<ul id="cart"></ul>
+
+<h3>Total: $<span id="total">0.00</span></h3>
+
+<button class="pay-btn" onclick="payNow()">
+💵 Pay With Cash App
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let total = 0;
+
+function addItem(name, price){
+
+let li = document.createElement("li");
+li.innerText = `${name} - $${price.toFixed(2)}`;
+
+document.getElementById("cart").appendChild(li);
+
+total += price;
+
+document.getElementById("total").innerText =
+total.toFixed(2);
+
+}
+
+function payNow(){
+
+let name =
+document.getElementById("customerName").value;
+
+let address =
+document.getElementById("customerAddress").value;
+
+if(name === "" || address === ""){
+alert("Please enter your name and address.");
+return;
+}
+
+window.open(
+"https://cash.app/$BenjiSlobod",
+"_blank"
+);
+
+}
+
+</script>
+
+</body>
+</html>
